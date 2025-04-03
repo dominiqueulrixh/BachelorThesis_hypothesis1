@@ -59,4 +59,17 @@ class HousingMarketModel(Model):
     def step(self):
         self.datacollector.collect(self)
         self.schedule.step()
-        self.current_week += 1  # Kalenderwoche inkrementieren
+        self.current_week += 1  # zuerst Kalenderwoche inkrementieren
+
+        # Nachfrage-Angebot-Verhältnis prüfen
+        active_buyers = sum(1 for a in self.schedule.agents if isinstance(a, BuyerAgent) and a.active)
+        listings = sum(1 for a in self.schedule.agents if isinstance(a, SellerAgent) and a.listed)
+
+        # Wenn Nachfrage deutlich > Angebot: neue Immobilien kommen auf den Markt
+        if active_buyers > listings and self.current_week % 2 == 0:
+            for _ in range(2):  # zwei neue Objekte hinzufügen
+                price = random.randint(500_000, 1_100_000)
+                location = random.choice(["Zentrum", "Kreis 4", "Seefeld"])
+                new_seller = SellerAgent(self.num_agents, self, price, location)
+                self.schedule.add(new_seller)
+                self.num_agents += 1
