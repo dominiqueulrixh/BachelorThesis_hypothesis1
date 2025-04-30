@@ -1,5 +1,4 @@
 from model.housing_market_model import HousingMarketModel
-import pandas as pd
 import matplotlib.pyplot as plt
 
 # Modell ausführen
