@@ -66,7 +66,7 @@ Die Simulation wurde mit dem Python-Framework [`Mesa`](https://mesa.readthedocs.
 
 ## Beispielhafte Visualisierungen
 
-- Anzahl aktiver Käufer:innen vs. angebotene Immobilien
+- Anzahl aktiver Käufer vs. angebotene Immobilien
 - Kumulative Transaktionen im Zeitverlauf
 - Marktspannung (Nachfrage/Angebotsverhältnis)
 
